@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SnakeController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class SnakeController : MonoBehaviour
     public float Speed;
     
     private Transform _transform;
+
+    public UnityEvent OnEat;
 
     private void Start()
     {
@@ -56,6 +59,11 @@ public class SnakeController : MonoBehaviour
 
             var bone = Instantiate(BonePrefabe);
             Tails.Add(bone.transform);
+
+            if( OnEat!= null)
+            {
+                OnEat.Invoke();
+            }
         } 
     }
 
